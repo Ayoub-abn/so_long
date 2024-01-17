@@ -1,21 +1,16 @@
-SRCS = test.c
-
-CFLAGS = -Wall -Wextra -Werror 
-OBJS = $(SRCS:.c=.o)
-MLX = -lmlx -lm -lXext -lX11 -lz
 NAME = so_long
-
-all: $(NAME)
-
-$(NAME): $(OBJS) $(MLX)
-	cc $(CFLAGS) $(OBJS) $(MLX) -lX11 -lXext -o $@
-
+SRC = so_long.c ft_putstr.c ft_strcmp.c ft_strlen.c get_next_line.c get_next_line_utlis.c
+OBJ = $(SRC:.c=.o)
 %.o: %.c
-	cc $(CFLAGS) -c $<
+	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
 
-$(MLX):
-	make all -C mlx
+$(NAME): $(OBJ)
+	$(CC) $(OBJ)  -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+
 clean:
-	rm -f $(OBJS) $(BOBJS)
+	rm -rf $(OBJ)
+
 fclean: clean
-	rm -f $(NAME)
+	rm -rf $(NAME)
+
+re: fclean all
