@@ -1,5 +1,6 @@
 #include "so_long.h"
 #include <stdlib.h>
+
 void path_check(char *path)
 {
     if (ft_strcmp(&path[ft_strlen(path) - 4], ".ber") != 0)
@@ -27,8 +28,37 @@ void map_check(char *path,t_data *data)
 		line = get_next_line(fd);
 	}
 	data->h = i;
-	printf("%d",i);
 	close(fd);
+}
+map_w(char *path,t_data *data)
+{
+	int fd;
+	int i;
+	int s;
+	char *line;
+	char *line2;
+	i = 0;
+	fd = open(path,O_RDONLY);
+	if(fd < 0)
+	{
+		ft_putstr("PATH MAKAYNCH");
+		exit(1);
+	}
+	line = get_next_line(fd);
+	s = ft_strlen(line);
+	while (line)
+	{
+		
+		line2 = get_next_line(fd);
+		if(s != (ft_strlen(line2)))
+		{
+			ft_putstr("PATH MAKAYNCH");
+			exit(1);
+		}
+	}
+	data->w = i;
+	close(fd);
+
 }
 int main(int argc, char *argv[])
  {
@@ -41,6 +71,7 @@ int main(int argc, char *argv[])
 	}
     path_check(argv[1]);
 	map_check(argv[1],&data);
+	map_w(argv[1],&data);
 
     
 //     char *str[5] = { "11111111111111111111111111111111",
