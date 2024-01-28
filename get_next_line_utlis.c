@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utlis.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aabdenou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/27 23:50:17 by aabdenou          #+#    #+#             */
+/*   Updated: 2024/01/27 23:50:24 by aabdenou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 char	*ft_strchr(const char *s, int c)
@@ -46,7 +58,6 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	i = 0;
 	j = 0;
-	
 	if (!s1)
 		return (ft_strdup(s2));
 	str = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
