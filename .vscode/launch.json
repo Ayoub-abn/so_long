@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/aabdenou/Desktop/so_long",
-      "program": "/Users/aabdenou/Desktop/so_long/build/Debug/outDebug"
+      "cwd": "/Users/aabdenou/Desktop/so_long/Bonus_part",
+      "program": "/Users/aabdenou/Desktop/so_long/Bonus_part/build/Debug/outDebug"
     }
   ]
 }
