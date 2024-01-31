@@ -30,6 +30,7 @@ typedef struct data
 	void	*win;
 	void	*one;
 	void	*zero;
+	void	*open;
 	void	*m;
 	void	*l;
 	void	*a;
@@ -45,6 +46,7 @@ typedef struct data
 	void	*c;
 	int		w;
 	int		h;
+	int		attack;
 	char	**map;
 	char	**map2;
 }			t_data;

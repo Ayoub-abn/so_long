@@ -183,7 +183,7 @@ void	map_content_p2(t_data *data)
 		while (j < data->w)
 		{
 			if (data->map[i][j] == 'C')
-				data->co += 1;
+				c += 1;
 			if (data->map[i][j] == 'P')
 				p += 1;
 			if (data->map[i][j] == 'E')
@@ -192,7 +192,7 @@ void	map_content_p2(t_data *data)
 		}
 		i++;
 	}
-	if (data->co < 1 || p != 1 || e != 1)
+	if (c < 1 || p != 1 || e != 1)
 	{
 		ft_putstr("CHIHAJA (ZAYDA || NA9SA) F LMAP");
 		exit(1);

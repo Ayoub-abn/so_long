@@ -5,7 +5,7 @@ OBJ = $(SRC:.c=.o)
 	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ)  -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) -fsanitize=address -g3 $(OBJ)  -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 clean:
 	rm -rf $(OBJ)

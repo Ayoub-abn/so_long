@@ -32,6 +32,7 @@ void	down(t_data *data)
 		ft_putstr("KHESERTI :)");
 		exit(1);
 	}
+
 	else
 	{
 		data->map[data->p_h][data->p_w] = '0';
@@ -65,27 +66,46 @@ void	right(t_data *data)
 	}
 }
 
-
 int	move(int keycode, t_data *data)
 {
-	if (keycode == 13)
+	if (keycode == 40)
 	{
-		if (data->map[data->p_h - 1][data->p_w] != '1' && data->map[data->p_h - 1][data->p_w] != 'E')
+		if (data->map[data->p_h][data->p_w - 1] == '0'
+			|| data->map[data->p_h][data->p_w - 1] == 'M')
+		{
+			data->map[data->p_h][data->p_w - 1] = 'A';
+		}
+	}
+	if (keycode == 37)
+	{
+		if (data->map[data->p_h][data->p_w + 1] == '0'
+			|| data->map[data->p_h][data->p_w + 1] == 'M')
+		{
+			data->map[data->p_h][data->p_w + 1] = 'A';
+		}
+	}
+	else if (keycode == 13)
+	{
+		if (data->map[data->p_h - 1][data->p_w] != '1' && data->map[data->p_h
+			- 1][data->p_w] != 'E')
 			up(data);
 	}
 	else if (keycode == 0)
 	{
-		if (data->map[data->p_h][data->p_w - 1] != '1' && data->map[data->p_h][data->p_w - 1] != 'E')
+		if (data->map[data->p_h][data->p_w - 1] != '1'
+			&& data->map[data->p_h][data->p_w - 1] != 'E')
 			left(data);
 	}
 	else if (keycode == 1)
 	{
-		if (data->map[data->p_h + 1][data->p_w] != '1' && data->map[data->p_h + 1][data->p_w] != 'E')
+		if (data->map[data->p_h + 1][data->p_w] != '1' && data->map[data->p_h
+			+ 1][data->p_w] != 'E')
 			down(data);
 	}
 	else if (keycode == 2)
 	{
-		if (data->map[data->p_h][data->p_w + 1] != '1' && data->map[data->p_h][data->p_w + 1] != 'E')
+		if (data->map[data->p_h][data->p_w + 1] != '1'
+			&& data->map[data->p_h][data->p_w + 1] != 'E')
 			right(data);
 	}
 	else if (keycode == 53)
