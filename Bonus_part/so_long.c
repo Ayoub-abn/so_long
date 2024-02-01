@@ -60,6 +60,9 @@ void	win_con(t_data *data)
 	data->p = mlx_xpm_file_to_image(data->mlx, "./imag/zorro.xpm",
 			&data->image_w, &data->image_h);
 	xpm_check(data->p);
+	data->pp = mlx_xpm_file_to_image(data->mlx, "./imag/zorro2.xpm",
+			&data->image_w, &data->image_h);
+	xpm_check(data->p);
 	data->zero = mlx_xpm_file_to_image(data->mlx, "./imag/lared.xpm",
 			&data->image_w, &data->image_h);
 	xpm_check(data->zero);
@@ -75,6 +78,9 @@ void	win_con(t_data *data)
 	data->a = mlx_xpm_file_to_image(data->mlx, "./imag/zorro_attck.xpm",
 			&data->image_w, &data->image_h);
 	xpm_check(data->a);
+	data->aa = mlx_xpm_file_to_image(data->mlx, "./imag/zorro_attck2.xpm",
+			&data->image_w, &data->image_h);
+	xpm_check(data->aa);
 	data->open = mlx_xpm_file_to_image(data->mlx, "./imag/sanigo2.xpm",
 			&data->image_w, &data->image_h);
 	xpm_check(data->open);
@@ -160,17 +166,37 @@ int	map(t_data *data)
 				
 				data->p_h = i;
 				data->p_w = j;
-				if (data->i == 1)
+				if (data->i == 1 && data->zero_right == 1)
 				{
 					mlx_put_image_to_window(data->mlx, data->win, data->a, j
 						* 60, i * 60);
-					if(data->z > 3)
+					if(data->z > 10)
 					{
 						data->i= 0;
 						data->z = 0;
 					}
 				}
-				else 
+				else if (data->i == 1 && data->zero_lfet == 1)
+				{
+					mlx_put_image_to_window(data->mlx, data->win, data->aa, j
+						* 60, i * 60);
+					if(data->z > 10)
+					{
+						data->i= 0;
+						data->z = 0;
+					}
+				}
+				else if(data->zero_lfet == 3)
+				{
+					mlx_put_image_to_window(data->mlx, data->win, data->pp, j * 60, i
+					* 60);
+				}
+				else if(data->zero_right == 2)
+				{
+					mlx_put_image_to_window(data->mlx, data->win, data->p, j * 60, i
+					* 60);
+				}
+				else /*if (data->zero_right == 0 && data->zero_lfet == 0)*/
 					mlx_put_image_to_window(data->mlx, data->win, data->p, j * 60, i
 					* 60);
 			}
@@ -205,10 +231,12 @@ int	map(t_data *data)
 }
 int	main(int argc, char *argv[])
 {
-	t_data	data;
+	t_data	data ;
 
 	data.i = 0;
 	data.z = 0;
+	data.zero_lfet = 0;
+	data.zero_right = 0;
 	if (argc != 2)
 	{
 		ft_putstr("NUMBER OF PARAMS PROBLEM");

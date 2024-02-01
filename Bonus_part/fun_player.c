@@ -32,7 +32,6 @@ void	down(t_data *data)
 		ft_putstr("KHESERTI :)");
 		exit(1);
 	}
-
 	else
 	{
 		data->map[data->p_h][data->p_w] = '0';
@@ -47,7 +46,8 @@ void	left(t_data *data)
 		exit(1);
 	}
 	else
-	{
+	{   data->zero_lfet = 3;
+	    data->zero_right = 0;
 		data->map[data->p_h][data->p_w] = '0';
 		data->map[data->p_h][data->p_w - 1] = 'P';
 	}
@@ -61,6 +61,8 @@ void	right(t_data *data)
 	}
 	else
 	{
+		data->zero_right = 2;
+		data->zero_lfet = 0;
 		data->map[data->p_h][data->p_w] = '0';
 		data->map[data->p_h][data->p_w + 1] = 'P';
 	}
@@ -68,15 +70,16 @@ void	right(t_data *data)
 
 int	move(int keycode, t_data *data)
 {
-
-	//int i = 0;
+	// int i = 0;
 	if (keycode == 40)
 	{
 		if (data->map[data->p_h][data->p_w - 1] == '0'
 			|| data->map[data->p_h][data->p_w - 1] == 'M')
 		{
-			 data->map[data->p_h][data->p_w - 1] = '0';
-			//i = 1;
+			data->map[data->p_h][data->p_w - 1] = '0';
+			data->zero_lfet = 1;
+			data->zero_right = 0;
+			//data->zero_lfet = 2;
 			data->i = 1;
 			data->z = 0;
 		}
@@ -86,8 +89,10 @@ int	move(int keycode, t_data *data)
 		if (data->map[data->p_h][data->p_w + 1] == '0'
 			|| data->map[data->p_h][data->p_w + 1] == 'M')
 		{
-			 data->map[data->p_h][data->p_w + 1] = '0';
-			// i = 1;
+			data->map[data->p_h][data->p_w + 1] = '0';
+			data->zero_right = 1;
+			data->zero_lfet = 0;
+			//data->zero_right = 3;
 			data->i = 1;
 			data->z = 0;
 		}
@@ -117,16 +122,24 @@ int	move(int keycode, t_data *data)
 			right(data);
 	}
 	else if (keycode == 53)
+	{
+		system("leaks so_long");
+		// while (data->map[i])
+		// {
+		// 	printf("freeing  %s \n", data->map[i]);
+		// 	free(data->map[i]);
+		// 	i++;
+		// }
+		// free(map);
 		exit(1);
-	
-	//map(data);
+	}
+	// map(data);
 	// if (i == 1)
 	// {
 	// 	sleep(1);
 	// 	printf("jf\n");
 	// 	mlx_clear_window(data->mlx, data->win);
-		//map2(data);
+	// map2(data);
 	// }
-		
 	return (0);
 }

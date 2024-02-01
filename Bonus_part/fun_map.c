@@ -85,7 +85,7 @@ void	map_arr(char *path, t_data *data)
 	data->map2 = malloc(data->h * sizeof(char **));
 	if (data->map2 == NULL)
 		return ;
-	while (i < data->h)
+	while (i <= data->h)
 	{
 		data->map[i] = get_next_line(fd);
 		i++;
