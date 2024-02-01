@@ -68,12 +68,17 @@ void	right(t_data *data)
 
 int	move(int keycode, t_data *data)
 {
+
+	//int i = 0;
 	if (keycode == 40)
 	{
 		if (data->map[data->p_h][data->p_w - 1] == '0'
 			|| data->map[data->p_h][data->p_w - 1] == 'M')
 		{
-			data->map[data->p_h][data->p_w - 1] = 'A';
+			 data->map[data->p_h][data->p_w - 1] = '0';
+			//i = 1;
+			data->i = 1;
+			data->z = 0;
 		}
 	}
 	if (keycode == 37)
@@ -81,7 +86,10 @@ int	move(int keycode, t_data *data)
 		if (data->map[data->p_h][data->p_w + 1] == '0'
 			|| data->map[data->p_h][data->p_w + 1] == 'M')
 		{
-			data->map[data->p_h][data->p_w + 1] = 'A';
+			 data->map[data->p_h][data->p_w + 1] = '0';
+			// i = 1;
+			data->i = 1;
+			data->z = 0;
 		}
 	}
 	else if (keycode == 13)
@@ -110,7 +118,15 @@ int	move(int keycode, t_data *data)
 	}
 	else if (keycode == 53)
 		exit(1);
-	mlx_clear_window(data->mlx, data->win);
-	map(data);
+	
+	//map(data);
+	// if (i == 1)
+	// {
+	// 	sleep(1);
+	// 	printf("jf\n");
+	// 	mlx_clear_window(data->mlx, data->win);
+		//map2(data);
+	// }
+		
 	return (0);
 }
