@@ -41,6 +41,27 @@ void	p_w_h(t_data *data)
 		i++;
 	}
 }
+// void	e_w_h(t_data *data)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	i = 0;
+// 	while (i < data->h)
+// 	{
+// 		j = 0;
+// 		while (j < data->w)
+// 		{
+// 			if (data->map[i][j] == 'E')
+// 			{
+// 				data->m_h = i;
+// 				data->m_w = j;
+// 			}
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }
 void	xpm_check(void *ptr)
 {
 	if (ptr == NULL)
@@ -62,7 +83,13 @@ void	win_con(t_data *data)
 	xpm_check(data->p);
 	data->pp = mlx_xpm_file_to_image(data->mlx, "./imag/zorro2.xpm",
 			&data->image_w, &data->image_h);
-	xpm_check(data->p);
+	xpm_check(data->pp);
+	data->aaa = mlx_xpm_file_to_image(data->mlx, "./imag/zorro_attck3.xpm",
+			&data->image_w, &data->image_h);
+	xpm_check(data->aaa);
+	data->aaaa = mlx_xpm_file_to_image(data->mlx, "./imag/zorro_attck4.xpm",
+			&data->image_w, &data->image_h);
+	xpm_check(data->aaaa);
 	data->zero = mlx_xpm_file_to_image(data->mlx, "./imag/lared.xpm",
 			&data->image_w, &data->image_h);
 	xpm_check(data->zero);
@@ -75,6 +102,15 @@ void	win_con(t_data *data)
 	data->m = mlx_xpm_file_to_image(data->mlx, "./imag/Marine.xpm",
 			&data->image_w, &data->image_h);
 	xpm_check(data->m);
+	data->m_d = mlx_xpm_file_to_image(data->mlx, "./imag/Marine_die.xpm",
+			&data->image_w, &data->image_h);
+	xpm_check(data->m_d);
+	data->m_d2 = mlx_xpm_file_to_image(data->mlx, "./imag/Marine_die2.xpm",
+			&data->image_w, &data->image_h);
+	xpm_check(data->m_d2);
+	data->m_d3 = mlx_xpm_file_to_image(data->mlx, "./imag/Marine_die3.xpm",
+			&data->image_w, &data->image_h);
+	xpm_check(data->m_d3);
 	data->a = mlx_xpm_file_to_image(data->mlx, "./imag/zorro_attck.xpm",
 			&data->image_w, &data->image_h);
 	xpm_check(data->a);
@@ -142,7 +178,19 @@ int	all_collected(t_data *data)
 	}
 	return (1);
 }
+// void	m_move(t_data *data)
+// {
+// 	int	i;
 
+// 	i = 1;
+// 	while (data->map[data->m_h - i][data->m_w] == '0')
+// 	{
+// 		data->m_h -= 1;
+// 		mlx_key_hook(data->win, move, data);
+// 		i++;
+// 	}
+
+// }
 int	map(t_data *data)
 {
 	int	i;
@@ -150,6 +198,7 @@ int	map(t_data *data)
 
 	i = 0;
 	data->z++;
+	data->zz++;
 	mlx_clear_window(data->mlx, data->win);
 	while (i < data->h)
 	{
@@ -163,16 +212,15 @@ int	map(t_data *data)
 					i * 60);
 			else if (data->map[i][j] == 'P')
 			{
-				
 				data->p_h = i;
 				data->p_w = j;
 				if (data->i == 1 && data->zero_right == 1)
 				{
 					mlx_put_image_to_window(data->mlx, data->win, data->a, j
 						* 60, i * 60);
-					if(data->z > 10)
+					if (data->z > 10)
 					{
-						data->i= 0;
+						data->i = 0;
 						data->z = 0;
 					}
 				}
@@ -180,25 +228,45 @@ int	map(t_data *data)
 				{
 					mlx_put_image_to_window(data->mlx, data->win, data->aa, j
 						* 60, i * 60);
-					if(data->z > 10)
+					if (data->z > 10)
 					{
-						data->i= 0;
+						data->i = 0;
 						data->z = 0;
 					}
 				}
-				else if(data->zero_lfet == 3)
+				else if (data->i == 1 && data->zero_up == 1)
 				{
-					mlx_put_image_to_window(data->mlx, data->win, data->pp, j * 60, i
-					* 60);
+					mlx_put_image_to_window(data->mlx, data->win, data->aaaa, j
+						* 60, i * 60);
+					if (data->z > 10)
+					{
+						data->i = 0;
+						data->z = 0;
+					}
 				}
-				else if(data->zero_right == 2)
+				else if (data->i == 1 && data->zero_down == 1)
 				{
-					mlx_put_image_to_window(data->mlx, data->win, data->p, j * 60, i
-					* 60);
+					mlx_put_image_to_window(data->mlx, data->win, data->aaa, j
+						* 60, i * 60);
+					if (data->z > 10)
+					{
+						data->i = 0;
+						data->z = 0;
+					}
 				}
-				else /*if (data->zero_right == 0 && data->zero_lfet == 0)*/
-					mlx_put_image_to_window(data->mlx, data->win, data->p, j * 60, i
-					* 60);
+				else if (data->zero_lfet == 3)
+				{
+					mlx_put_image_to_window(data->mlx, data->win, data->pp, j
+						* 60, i * 60);
+				}
+				else if (data->zero_right == 2)
+				{
+					mlx_put_image_to_window(data->mlx, data->win, data->p, j
+						* 60, i * 60);
+				}
+				else
+					mlx_put_image_to_window(data->mlx, data->win, data->p, j
+						* 60, i * 60);
 			}
 			else if (data->map[i][j] == '0')
 				mlx_put_image_to_window(data->mlx, data->win, data->zero, j
@@ -206,15 +274,31 @@ int	map(t_data *data)
 			else if (data->map[i][j] == 'C')
 				mlx_put_image_to_window(data->mlx, data->win, data->c, j * 60, i
 					* 60);
-			else if (data->map[i][j] == 'A')
-			{
-				mlx_put_image_to_window(data->mlx, data->win, data->a, j * 60, i
-					* 60);
-				data->map[i][j] = '0';
-			}
 			else if (data->map[i][j] == 'M')
+			{
 				mlx_put_image_to_window(data->mlx, data->win, data->m, j * 60, i
 					* 60);
+			}
+			// if (data->attack_lfet == 86
+				//&& data->map[data->p_h][data->p_w- 1] == 'M')
+			// {
+			// 	mlx_put_image_to_window(data->mlx, data->win, data->m_d, j * 60,
+			// 		i * 60);
+			// 	if (data->zz > 100)
+			// 	{
+			// 		mlx_put_image_to_window(data->mlx, data->win, data->m_d2, j
+			// 			* 60, i * 60);
+			// 	}
+			// 	else if (data->zz > 200)
+			// 	{
+			// 		mlx_put_image_to_window(data->mlx, data->win, data->m_d3, j
+			// 			* 60, i * 60);
+			// 		data->zz = 0;
+			// 		data->i = 0;
+			// 		data->attack_lfet = 0;
+			// 		data->map[data->p_h][data->p_w - 1] = '0';
+			// 	}
+			// }
 			else if (data->map[i][j] == 'E')
 			{
 				mlx_put_image_to_window(data->mlx, data->win, data->e, j * 60, i
@@ -227,16 +311,21 @@ int	map(t_data *data)
 		}
 		i++;
 	}
-	return(0);
+	return (0);
 }
 int	main(int argc, char *argv[])
 {
-	t_data	data ;
-
+	t_data	data;
+	data.move = 0;
 	data.i = 0;
 	data.z = 0;
+	data.zz = 0;
 	data.zero_lfet = 0;
 	data.zero_right = 0;
+	data.attack_lfet = 0;
+	data.attack_right = 0;
+	data.zero_up = 0;
+	data.zero_down = 0;
 	if (argc != 2)
 	{
 		ft_putstr("NUMBER OF PARAMS PROBLEM");
@@ -255,6 +344,7 @@ int	main(int argc, char *argv[])
 	flood_fill(&data, data.p_w, data.p_h);
 	flood_fill_check(&data);
 	mlx_key_hook(data.win, move, &data);
-	mlx_loop_hook(data.mlx,map,&data);
+	//m_move(&data);
+	mlx_loop_hook(data.mlx, map, &data);
 	mlx_loop(data.mlx);
 }
