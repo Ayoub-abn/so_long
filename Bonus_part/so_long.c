@@ -41,27 +41,6 @@ void	p_w_h(t_data *data)
 		i++;
 	}
 }
-// void	e_w_h(t_data *data)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = 0;
-// 	while (i < data->h)
-// 	{
-// 		j = 0;
-// 		while (j < data->w)
-// 		{
-// 			if (data->map[i][j] == 'E')
-// 			{
-// 				data->m_h = i;
-// 				data->m_w = j;
-// 			}
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// }
 void	xpm_check(void *ptr)
 {
 	if (ptr == NULL)
@@ -90,9 +69,15 @@ void	win_con(t_data *data)
 	data->aaaa = mlx_xpm_file_to_image(data->mlx, "./imag/zorro_attck4.xpm",
 			&data->image_w, &data->image_h);
 	xpm_check(data->aaaa);
+	data->zorro_move = mlx_xpm_file_to_image(data->mlx, "./imag/zorro_move.xpm",
+			&data->image_w, &data->image_h);
+	xpm_check(data->zorro_move);
+	data->zorro_move2 = mlx_xpm_file_to_image(data->mlx,
+			"./imag/zorro_move2.xpm", &data->image_w, &data->image_h);
+	xpm_check(data->zorro_move2);
 	data->zero = mlx_xpm_file_to_image(data->mlx, "./imag/lared.xpm",
 			&data->image_w, &data->image_h);
-	xpm_check(data->zero);
+	xpm_check(data->zorro_move2);
 	data->c = mlx_xpm_file_to_image(data->mlx, "./imag/bottle.xpm",
 			&data->image_w, &data->image_h);
 	xpm_check(data->c);
@@ -102,15 +87,15 @@ void	win_con(t_data *data)
 	data->m = mlx_xpm_file_to_image(data->mlx, "./imag/Marine.xpm",
 			&data->image_w, &data->image_h);
 	xpm_check(data->m);
-	data->m_d = mlx_xpm_file_to_image(data->mlx, "./imag/Marine_die.xpm",
+	data->m_a = mlx_xpm_file_to_image(data->mlx, "./imag/Marine_attck.xpm",
 			&data->image_w, &data->image_h);
-	xpm_check(data->m_d);
-	data->m_d2 = mlx_xpm_file_to_image(data->mlx, "./imag/Marine_die2.xpm",
+	xpm_check(data->m_a);
+	data->m_a2 = mlx_xpm_file_to_image(data->mlx, "./imag/Marine_attck2.xpm",
 			&data->image_w, &data->image_h);
-	xpm_check(data->m_d2);
-	data->m_d3 = mlx_xpm_file_to_image(data->mlx, "./imag/Marine_die3.xpm",
+	xpm_check(data->m_a2);
+	data->m_a3 = mlx_xpm_file_to_image(data->mlx, "./imag/Marine_attck3.xpm",
 			&data->image_w, &data->image_h);
-	xpm_check(data->m_d3);
+	xpm_check(data->m_a3);
 	data->a = mlx_xpm_file_to_image(data->mlx, "./imag/zorro_attck.xpm",
 			&data->image_w, &data->image_h);
 	xpm_check(data->a);
@@ -193,10 +178,12 @@ int	all_collected(t_data *data)
 // }
 int	map(t_data *data)
 {
-	int	i;
-	int	j;
+	int			i;
+	int			j;
+	static int	zzz = 0;
 
 	i = 0;
+	zzz++;
 	data->z++;
 	data->zz++;
 	mlx_clear_window(data->mlx, data->win);
@@ -276,29 +263,64 @@ int	map(t_data *data)
 					* 60);
 			else if (data->map[i][j] == 'M')
 			{
-				mlx_put_image_to_window(data->mlx, data->win, data->m, j * 60, i
-					* 60);
+				if (data->zz < 20)
+					mlx_put_image_to_window(data->mlx, data->win, data->m_a, j
+						* 60, i * 60);
+				else if (data->zz < 50)
+					mlx_put_image_to_window(data->mlx, data->win, data->m_a2, j
+						* 60, i * 60);
+				else if (data->zz < 200)
+				{
+					mlx_put_image_to_window(data->mlx, data->win, data->m_a3, j
+						* 60, i * 60);
+					data->zz = 0;
+				}
+				else
+					mlx_put_image_to_window(data->mlx, data->win, data->m, j
+						* 60, i * 60);
 			}
-			// if (data->attack_lfet == 86
-				//&& data->map[data->p_h][data->p_w- 1] == 'M')
-			// {
-			// 	mlx_put_image_to_window(data->mlx, data->win, data->m_d, j * 60,
-			// 		i * 60);
-			// 	if (data->zz > 100)
-			// 	{
-			// 		mlx_put_image_to_window(data->mlx, data->win, data->m_d2, j
-			// 			* 60, i * 60);
-			// 	}
-			// 	else if (data->zz > 200)
-			// 	{
-			// 		mlx_put_image_to_window(data->mlx, data->win, data->m_d3, j
-			// 			* 60, i * 60);
-			// 		data->zz = 0;
-			// 		data->i = 0;
-			// 		data->attack_lfet = 0;
-			// 		data->map[data->p_h][data->p_w - 1] = '0';
-			// 	}
-			// }
+			if (( data->map[i][j] == 'M' && (data->map[i][j - 1] == '0' || data->map[i][j - 1] == 'P')) || (data->map[i][j + 1] == '0' || data->map[i][j + 1] == 'P'))
+			{
+				if(data->zzzz == 0 && data->map[i][j] == 'M' && (data->map[i][j - 1] == '0' || data->map[i][j - 1] == 'P'))
+				{
+					if (zzz > 80)
+					{
+						if (data->map[i][j - 1] == 'P')
+						{
+							ft_putstr("KHESRTI :(");
+							exit(1);
+						}
+						else
+						{
+							data->map[i][j] = '0';
+							data->map[i][j - 1] = 'M';
+							zzz = 0;
+						}
+					}
+				}
+				else if (data->map[i][j] == 'M' && data->map[i][j - 1] == '1')
+					data->zzzz = 1;
+				if ( data->zzzz == 1 && data->map[i][j] == 'M' && (data->map[i][j + 1] == '0' || data->map[i][j + 1] == 'P'))
+				{
+					if (zzz > 80)
+					{
+						if (data->map[i][j + 1] == 'P')
+						{
+							ft_putstr("KHESRTI :(");
+							exit(1);
+						}
+						else
+						{
+							data->map[i][j] = '0';
+							data->map[i][j + 1] = 'M';
+							zzz = 0;
+						}
+					}
+				}
+				else if(data->map[i][j] == 'M' && data->map[i][j + 1] == '1')
+					data->zzzz = 0;
+
+			}
 			else if (data->map[i][j] == 'E')
 			{
 				mlx_put_image_to_window(data->mlx, data->win, data->e, j * 60, i
@@ -316,10 +338,12 @@ int	map(t_data *data)
 int	main(int argc, char *argv[])
 {
 	t_data	data;
+
 	data.move = 0;
 	data.i = 0;
 	data.z = 0;
 	data.zz = 0;
+	data.zzzz = 0;
 	data.zero_lfet = 0;
 	data.zero_right = 0;
 	data.attack_lfet = 0;
@@ -344,7 +368,7 @@ int	main(int argc, char *argv[])
 	flood_fill(&data, data.p_w, data.p_h);
 	flood_fill_check(&data);
 	mlx_key_hook(data.win, move, &data);
-	//m_move(&data);
+	// m_move(&data);
 	mlx_loop_hook(data.mlx, map, &data);
 	mlx_loop(data.mlx);
 }
