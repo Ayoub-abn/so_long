@@ -35,6 +35,7 @@ void	map_check(char *path, t_data *data)
 	while (line)
 	{
 		i++;
+		free(line);
 		line = get_next_line(fd);
 	}
 	data->h = i;
@@ -61,6 +62,7 @@ void	map_w(char *path, t_data *data)
 			ft_putstr("MAP MAM9ADACH");
 			exit(1);
 		}
+		free(line);
 		line = get_next_line(fd);
 	}
 	data->w = s;
@@ -71,6 +73,7 @@ void	map_arr(char *path, t_data *data)
 {
 	int	fd;
 	int	i;
+	//char *str;
 
 	i = 0;
 	fd = open(path, O_RDONLY);
@@ -82,12 +85,11 @@ void	map_arr(char *path, t_data *data)
 	data->map = malloc(data->h * sizeof(char **));
 	if (data->map == NULL)
 		return ;
-	data->map2 = malloc(data->h * sizeof(char **));
-	if (data->map2 == NULL)
-		return ;
-	while (i <= data->h)
+	while (i < data->h)
 	{
+		//free(str);
 		data->map[i] = get_next_line(fd);
+		//free(str);
 		i++;
 	}
 	close(fd);
@@ -107,8 +109,9 @@ void	map_arr2(char *path, t_data *data)
 	data->map2 = malloc(data->h * sizeof(char **));
 	if (data->map2 == NULL)
 		return ;
-	while (i <= data->h)
+	while (i < data->h)
 	{
+		//free(data->map2[i]);
 		data->map2[i] = get_next_line(fd);
 		i++;
 	}
