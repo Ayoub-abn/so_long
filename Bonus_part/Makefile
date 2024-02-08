@@ -1,5 +1,8 @@
 NAME = so_long
-SRC = so_long.c ft_putstr.c ft_strcmp.c ft_strlen.c get_next_line.c get_next_line_utlis.c ft_strlen_2.c fun_map.c fun_player.c ft_itoa.c
+SRC = so_long.c ft_putstr.c ft_strcmp.c \
+	ft_strlen.c get_next_line.c get_next_line_utlis.c\
+	ft_strlen_2.c fun_map.c fun_player.c ft_itoa.c moves.c\
+	attack.c draw.c fun_map_2.c
 OBJ = $(SRC:.c=.o)
 %.o: %.c
 	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@

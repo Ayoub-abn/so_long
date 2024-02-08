@@ -28,8 +28,7 @@ void	map_check(char *path, t_data *data)
 	line = get_next_line(fd);
 	if (line == NULL)
 	{
-		ft_putstr("MAP KHAWYA");
-		close(fd);
+		(ft_putstr("MAP KHAWYA"), close(fd));
 		exit(1);
 	}
 	while (line)
@@ -41,6 +40,7 @@ void	map_check(char *path, t_data *data)
 	data->h = i;
 	close(fd);
 }
+
 void	map_w(char *path, t_data *data)
 {
 	int		fd;
@@ -73,7 +73,6 @@ void	map_arr(char *path, t_data *data)
 {
 	int	fd;
 	int	i;
-	//char *str;
 
 	i = 0;
 	fd = open(path, O_RDONLY);
@@ -87,13 +86,12 @@ void	map_arr(char *path, t_data *data)
 		return ;
 	while (i < data->h)
 	{
-		//free(str);
 		data->map[i] = get_next_line(fd);
-		//free(str);
 		i++;
 	}
 	close(fd);
 }
+
 void	map_arr2(char *path, t_data *data)
 {
 	int	fd;
@@ -111,7 +109,6 @@ void	map_arr2(char *path, t_data *data)
 		return ;
 	while (i < data->h)
 	{
-		//free(data->map2[i]);
 		data->map2[i] = get_next_line(fd);
 		i++;
 	}
@@ -145,59 +142,4 @@ void	map_border(t_data *data)
 		i++;
 	}
 }
-void	map_content_p1(t_data *data)
-{
-	int	i;
-	int	j;
 
-	i = 0;
-	while (i < data->h)
-	{
-		j = 0;
-		while (j < data->w)
-		{
-			if (data->map[i][j] != '1' && data->map[i][j] != '0'
-				&& data->map[i][j] != 'E' && data->map[i][j] != 'P'
-				&& data->map[i][j] != 'C' && data->map[i][j] != 'M')
-			{
-				ft_putstr("DAYER CHI HAJA MAKHASHACH T KON F LMAP");
-				exit(1);
-			}
-			j++;
-		}
-		i++;
-	}
-}
-void	map_content_p2(t_data *data)
-{
-	int	i;
-	int	j;
-	int	c;
-	int	p;
-	int	e;
-
-	c = 0;
-	p = 0;
-	e = 0;
-	i = 0;
-	while (i < data->h)
-	{
-		j = 0;
-		while (j < data->w)
-		{
-			if (data->map[i][j] == 'C')
-				c += 1;
-			if (data->map[i][j] == 'P')
-				p += 1;
-			if (data->map[i][j] == 'E')
-				e += 1;
-			j++;
-		}
-		i++;
-	}
-	if (c < 1 || p != 1 || e != 1)
-	{
-		ft_putstr("CHIHAJA (ZAYDA || NA9SA) F LMAP");
-		exit(1);
-	}
-}
