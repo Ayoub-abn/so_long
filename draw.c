@@ -14,7 +14,6 @@
 
 void	draw_player(t_data *data, int i, int j)
 {
-	p_w_h(data);
 	if (data->zero_lfet == 3)
 		mlx_put_image_to_window(data->mlx, data->win, data->p2, j * 60, i * 60);
 	else if (data->zero_right == 2)
@@ -99,6 +98,6 @@ int	all_collected(t_data *data)
 int	close_window(t_data *data)
 {
 	mlx_destroy_window(data->mlx, data->win);
-	exit(1);
+	exit(0);
 	return (0);
 }

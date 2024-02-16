@@ -19,8 +19,6 @@ void	attack_left(t_data *data)
 	data->zero_right = 0;
 	data->i = 1;
 	data->frame_p = 0;
-	data->attack_lfet = 86;
-	data->attack_right = 0;
 }
 
 void	attack_right(t_data *data)
@@ -30,8 +28,6 @@ void	attack_right(t_data *data)
 	data->zero_lfet = 0;
 	data->i = 1;
 	data->frame_p = 0;
-	data->attack_right = 88;
-	data->attack_lfet = 0;
 }
 
 int	all_collected(t_data *data)

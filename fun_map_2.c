@@ -94,9 +94,6 @@ void	flood_fill_check(t_data *data)
 
 void	flood_fill(t_data *data, int j, int i)
 {
-	if (data->p_h < 0 || data->p_w < 0 || data->p_h >= data->h
-		|| data->p_w >= data->w)
-		return ;
 	if (data->map2[i][j] != '0' && data->map2[i][j] != 'C'
 		&& data->map2[i][j] != 'E' && data->map2[i][j] != 'P')
 		return ;

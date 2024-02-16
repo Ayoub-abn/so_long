@@ -28,7 +28,7 @@ void	map_check(char *path, t_data *data)
 	line = get_next_line(fd);
 	if (line == NULL)
 	{
-		(system("leaks so_long"), ft_putstr("MAP KHAWYA"), close(fd));
+		(ft_putstr("MAP KHAWYA"), close(fd));
 		exit(1);
 	}
 	while (line)
@@ -81,7 +81,7 @@ void	map_arr(char *path, t_data *data)
 		ft_putstr("PATH MAKAYNCH");
 		exit(1);
 	}
-	data->map = malloc(data->h * sizeof(char **));
+	data->map = malloc(data->h * sizeof(char *));
 	if (data->map == NULL)
 		return ;
 	while (i < data->h)
@@ -104,7 +104,7 @@ void	map_arr2(char *path, t_data *data)
 		ft_putstr("PATH MAKAYNCH");
 		exit(1);
 	}
-	data->map2 = malloc(data->h * sizeof(char **));
+	data->map2 = malloc(data->h * sizeof(char *));
 	if (data->map2 == NULL)
 		return ;
 	while (i < data->h)

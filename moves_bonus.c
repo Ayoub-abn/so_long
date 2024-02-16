@@ -17,7 +17,7 @@ void	up(t_data *data)
 	if (data->map[data->p_h - 1][data->p_w] == 'M')
 	{
 		ft_putstr("KHESERTI :)");
-		exit(1);
+		exit(0);
 	}
 	else
 	{
@@ -31,7 +31,7 @@ void	down(t_data *data)
 	if (data->map[data->p_h + 1][data->p_w] == 'M')
 	{
 		ft_putstr("KHESERTI :)");
-		exit(1);
+		exit(0);
 	}
 	else
 	{
@@ -45,7 +45,7 @@ void	left(t_data *data)
 	if (data->map[data->p_h][data->p_w - 1] == 'M')
 	{
 		ft_putstr("KHESERTI :)");
-		exit(1);
+		exit(0);
 	}
 	else
 	{
@@ -61,7 +61,7 @@ void	right(t_data *data)
 	if (data->map[data->p_h][data->p_w + 1] == 'M')
 	{
 		ft_putstr("KHESERTI :)");
-		exit(1);
+		exit(0);
 	}
 	else
 	{

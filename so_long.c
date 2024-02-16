@@ -21,7 +21,7 @@ void	path_check(char *path)
 		ft_putstr("MAKYNACH EXTENTION");
 		exit(1);
 	}
-	if (ft_strncmp(extention, ".ber", 4) != 0)
+	if (ft_strcmp(extention, ".ber") != 0)
 	{
 		ft_putstr("EXTENTION RALATA");
 		exit(1);
