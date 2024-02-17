@@ -1,4 +1,5 @@
 NAME = so_long
+NAME_1 = so_long_bonus
 
 SRC = so_long.c ft_putstr.c ft_strcmp.c \
 	ft_strlen.c get_next_line.c get_next_line_utlis.c\
@@ -20,15 +21,17 @@ CFLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(FLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) $(FLAGS) -o $(NAME)
 
-bonus: $(BOBJ)
-	$(CC) $(BOBJ) $(FLAGS) -o $(NAME)
+bonus: $(NAME_1)
+
+$(NAME_1): $(BOBJ)
+	$(CC) $(CFLAGS) $(BOBJ) $(FLAGS) -o $(NAME_1)
 
 clean:
 	rm -rf $(OBJ) $(BOBJ)
 
 fclean: clean
-	rm -rf $(NAME)
+	rm -rf $(NAME) $(NAME_1)
 
 re: fclean all

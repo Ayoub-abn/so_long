@@ -75,6 +75,11 @@ void	map_arr(char *path, t_data *data)
 	int	i;
 
 	i = 0;
+	if (data->w > 53 || data->h > 29)
+	{
+		ft_putstr("Big map");
+		exit(1);
+	}
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{
