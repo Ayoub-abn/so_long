@@ -17,7 +17,6 @@ void	attack_left(t_data *data)
 	data->map[data->p_h][data->p_w - 1] = '0';
 	data->zero_lfet = 1;
 	data->zero_right = 0;
-	data->i = 1;
 	data->frame_p = 0;
 }
 
@@ -26,7 +25,6 @@ void	attack_right(t_data *data)
 	data->map[data->p_h][data->p_w + 1] = '0';
 	data->zero_right = 1;
 	data->zero_lfet = 0;
-	data->i = 1;
 	data->frame_p = 0;
 }
 

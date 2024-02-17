@@ -84,7 +84,7 @@ void	xpm_check(t_data *ptr)
 {
 	if (ptr == NULL)
 	{
-		ft_putstr("TSWIRA MAKAYNACH");
+		ft_putstr("image error");
 		exit(1);
 	}
 }

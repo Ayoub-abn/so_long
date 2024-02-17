@@ -22,13 +22,13 @@ void	map_check(char *path, t_data *data)
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_putstr("PATH MAKAYNCH");
+		ft_putstr("This map does not exist");
 		exit(1);
 	}
 	line = get_next_line(fd);
 	if (line == NULL)
 	{
-		(ft_putstr("MAP KHAWYA"), close(fd));
+		(ft_putstr("This map is empty"), close(fd));
 		exit(1);
 	}
 	while (line)
@@ -50,7 +50,7 @@ void	map_w(char *path, t_data *data)
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_putstr("PATH MAKAYNCH");
+		ft_putstr("This map does not exist");
 		exit(1);
 	}
 	line = get_next_line(fd);
@@ -59,7 +59,7 @@ void	map_w(char *path, t_data *data)
 	{
 		if (s != ft_strlen_2(line))
 		{
-			ft_putstr("MAP MAM9ADACH");
+			ft_putstr("The map lines are not equal");
 			exit(1);
 		}
 		free(line);
@@ -78,7 +78,7 @@ void	map_arr(char *path, t_data *data)
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_putstr("PATH MAKAYNCH");
+		ft_putstr("This map does not exist");
 		exit(1);
 	}
 	data->map = malloc(data->h * sizeof(char *));
@@ -101,7 +101,7 @@ void	map_arr2(char *path, t_data *data)
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_putstr("PATH MAKAYNCH");
+		ft_putstr("This map does not exist");
 		exit(1);
 	}
 	data->map2 = malloc(data->h * sizeof(char *));
@@ -129,12 +129,12 @@ void	map_border(t_data *data)
 		{
 			if ((data->map[0][j] != '1' || data->map[data->h - 1][j] != '1'))
 			{
-				ft_putstr("MAP MAM9ADACH");
+				ft_putstr("map border error");
 				exit(1);
 			}
 			if (data->map[i][0] != '1' || data->map[i][data->w - 1] != '1')
 			{
-				ft_putstr("MAP MAM9ADACH KAYNA CHI HAJA F JENAB ");
+				ft_putstr("map border error ");
 				exit(1);
 			}
 			j++;

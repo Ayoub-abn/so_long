@@ -29,7 +29,7 @@ void	up_1(t_data *data)
 	}
 	else if (all_collected(data) && data->map[data->p_h - 1][data->p_w] == 'E')
 	{
-		ft_putstr("REBAHTI :)");
+		ft_putstr("you won:)");
 		exit(0);
 	}
 }
@@ -51,7 +51,7 @@ void	left_1(t_data *data)
 	}
 	else if (all_collected(data) && data->map[data->p_h][data->p_w - 1] == 'E')
 	{
-		ft_putstr("REBAHTI :)");
+		ft_putstr("you won:)");
 		exit(0);
 	}
 }
@@ -73,7 +73,7 @@ void	down_1(t_data *data)
 	}
 	else if (all_collected(data) && data->map[data->p_h + 1][data->p_w] == 'E')
 	{
-		ft_putstr("REBAHTI :)");
+		ft_putstr("you won:)");
 		exit(0);
 	}
 }
@@ -95,7 +95,7 @@ void	right_1(t_data *data)
 	}
 	else if (all_collected(data) && data->map[data->p_h][data->p_w + 1] == 'E')
 	{
-		ft_putstr("REBAHTI :)");
+		ft_putstr("you won:)");
 		exit(0);
 	}
 }

@@ -27,7 +27,7 @@ void	map_content_p1(t_data *data)
 				&& data->map[i][j] != 'E' && data->map[i][j] != 'P'
 				&& data->map[i][j] != 'C')
 			{
-				ft_putstr("DAYER CHI HAJA MAKHASHACH T KON F LMAP");
+				ft_putstr("Problem with items");
 				exit(1);
 			}
 			j++;
@@ -65,7 +65,7 @@ void	map_content_p3(t_data *data)
 {
 	if (data->co < 1 || data->c_p != 1 || data->c_e != 1)
 	{
-		ft_putstr("CHIHAJA (ZAYDA || NA9SA) F LMAP");
+		ft_putstr("Problem with items");
 		exit(1);
 	}
 }
@@ -83,7 +83,7 @@ void	flood_fill_check(t_data *data)
 		{
 			if (data->map2[i][j] == 'E' || data->map2[i][j] == 'C')
 			{
-				ft_putstr("L MAP MAYMKNCH LIHA TREBAH");
+				ft_putstr("The map is unplayable");
 				exit(1);
 			}
 			j++;

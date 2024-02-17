@@ -31,7 +31,7 @@ void	map_draw(t_data *data, int i, int j)
 	}
 	else if (data->map[i][j] == 'C')
 		mlx_put_image_to_window(data->mlx, data->win, data->c, j * 60, i * 60);
-	if (data->map[i][j] == 'M')
+	else if (data->map[i][j] == 'M')
 		draw_marines(data, i, j);
 	else
 	{

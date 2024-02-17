@@ -18,12 +18,12 @@ void	path_check(char *path)
 	extention = ft_strrchr(path, '.');
 	if (extention == NULL)
 	{
-		ft_putstr("MAKYNACH EXTENTION");
+		ft_putstr("do not have extention");
 		exit(1);
 	}
 	if (ft_strcmp(extention, ".ber") != 0)
 	{
-		ft_putstr("EXTENTION RALATA");
+		ft_putstr("extention False");
 		exit(1);
 	}
 }
@@ -54,7 +54,7 @@ void	xpm_check(t_data *ptr)
 {
 	if (ptr == NULL)
 	{
-		ft_putstr("TSWIRA MAKAYNACH");
+		ft_putstr("image error");
 		exit(1);
 	}
 }
@@ -86,7 +86,7 @@ int	main(int argc, char *argv[])
 	ft_memset(&data, 0, sizeof(data));
 	if (argc != 2)
 	{
-		ft_putstr("L3ADAD DEYAL PARAMS RALAT");
+		ft_putstr("params error");
 		return (1);
 	}
 	path_check(argv[1]);
